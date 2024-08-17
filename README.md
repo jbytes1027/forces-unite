@@ -16,12 +16,12 @@ See `FU.SPA/README.md` for more details.
 
 ## Authors
 
-Aaron Keys - alkeys@email.sc.edu
+Aaron Keys \<<alkeys@email.sc.edu>\>
 
-Ethan Adams - epadams@email.sc.edu
+Ethan Adams \<<epadams@email.sc.edu>\>
 
-Evan Scales - escales@email.sc.edu
+Evan Scales \<<escales@email.sc.edu>\>
 
-Jackson Williams - JRW30@email.sc.edu
+Jackson Williams \<<JRW30@email.sc.edu>\>
 
-James Pretorius - pretorj@email.sc.edu
+James Pretorius \<<pretorj@email.sc.edu>\>
