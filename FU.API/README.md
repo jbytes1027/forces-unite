@@ -1,27 +1,13 @@
-# API Overview
+# API Development Overview
 
-## Tech Stack
-
-- The api is build with ASP.NET
-  - SignalR is used for real-time chat
-  - SkiaSharp is used for image manipulation
-  - xUnit is used for testing
-  - EFCore is our O/RM
-- Postgres is our DBMS
-- Azure Blob Storage is used to store user avatars
-- Azure Communication Service is used to send emails
-- Docker can be used for containerization
-
-## Development
-
-### External Requirements
+## External Requirements
 
 In order to run the project you first have to install:
 
 - [ASP.NET Core 7](https://learn.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-7.0)
 - [PostgreSQL](https://www.postgresql.org/download/)
 
-### Postgres Setup
+## Postgres Setup
 
 Install and start the database by installing Docker and running the following command.
 
@@ -37,11 +23,11 @@ docker container start postgres-490
 
 Alternatively, install and start a PostgreSQL database manually.
 
-### Config Setup
+## Config Setup
 
 Config settings are loaded from the environment variables. To automatically load the environment variable from a file, create a `.env` file in this folder.
 
-#### Blob storage
+### Blob storage
 
 An azure storage account is needed with a storage container. Public anonymous access must be enabled. The `STORAGE_CONNECTION_STRING` and `AVATAR_CONTAINER_NAME` environment variables must be set.
 
@@ -50,7 +36,7 @@ STORAGE_CONNECTION_STRING="XXXXXXXX"
 AVATAR_CONTAINER_NAME="some-container-name"
 ```
 
-#### Jwt Secret
+### Jwt Secret
 
 A random string of 32+ characters is required in the `JWT_SECRET` environment variable as a Jwt Secret.
 
@@ -58,7 +44,7 @@ A random string of 32+ characters is required in the `JWT_SECRET` environment va
 JWT_SECRET="my-32-character-ultra-secure-and-ultra-long-secret"
 ```
 
-#### Email service
+### Email service
 
 An azure communication service is needed to send emails.
 
@@ -66,7 +52,7 @@ An azure communication service is needed to send emails.
 EMAIL_CONNECTION_STRING="XXXXXXXX"
 ```
 
-#### Add Allowed Cors Origin
+### Add Allowed Cors Origin
 
 Set the allowed Cors origin. This should be the URL of the SPA.
 
@@ -74,7 +60,7 @@ Set the allowed Cors origin. This should be the URL of the SPA.
 CORS_ALLOW_ORIGIN="http://localhost:5173"
 ```
 
-#### Connect to Postgres
+### Connect to Postgres
 
 Set the postgres `CONNECTION_STRING` environment variable.
 
@@ -82,7 +68,7 @@ Set the postgres `CONNECTION_STRING` environment variable.
 CONNECTION_STRING="Host=localhost; Database=fu_dev; Username=dev; Password=dev"
 ```
 
-### Coding Style
+## Coding Style
 
 Follow Google's C# [style guide](https://google.github.io/styleguide/csharp-style.html)
 
