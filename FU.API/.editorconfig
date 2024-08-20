@@ -1,5 +1,8 @@
 ﻿[*.cs]
 
+max_line_length = 120
+csharp_max_line_length = 120
+
 # SA1633: File should have header
 dotnet_diagnostic.SA1633.severity = none
 
