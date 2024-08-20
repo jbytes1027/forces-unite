@@ -39,8 +39,10 @@ internal class Program
             app.UseSwaggerUI();
         }
 
+        string allowedCorsOrigin = DotNetEnv.Env.GetString(ConfigKey.CorsAllowOrigin);
+
         app.UseCors(x => x
-            .WithOrigins("http://localhost:5173", "https://jolly-glacier-0ae92c40f.4.azurestaticapps.net", "https://www.forces-unite.com")
+            .WithOrigins(allowedCorsOrigin)
             .AllowAnyMethod()
             .AllowAnyHeader()
             .AllowCredentials()
@@ -246,6 +248,11 @@ internal class Program
         if (config[ConfigKey.StorageConnectionString] is null)
         {
             throw new Exception($"Storage connection string is not configured. Missing {ConfigKey.StorageConnectionString}. See README for adding.");
+        }
+
+        if (config[ConfigKey.CorsAllowOrigin] is null)
+        {
+            throw new Exception($"Allowed Cors origin is not configured. Missing {ConfigKey.CorsAllowOrigin}. See README for adding.");
         }
     }
 }

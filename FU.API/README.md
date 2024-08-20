@@ -66,6 +66,14 @@ An azure communication service is needed to send emails.
 EMAIL_CONNECTION_STRING="XXXXXXXX"
 ```
 
+#### Add Allowed Cors Origin
+
+Set the allowed Cors origin. This should be the URL of the SPA.
+
+```
+CORS_ALLOW_ORIGIN="http://localhost:5173"
+```
+
 #### Connect to Postgres
 
 Set the postgres `CONNECTION_STRING` environment variable.
