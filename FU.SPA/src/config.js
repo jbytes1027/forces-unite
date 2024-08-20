@@ -29,7 +29,7 @@ const SOCIAL_USER_SORT_OPTIONS = [
  */
 const config = {
   API_URL: import.meta.env.VITE_API_URL,
-  CHAT_HUB_URL: import.meta.env.VITE_API_URL.replace(/\/api$/) + '/chathub',
+  CHAT_HUB_URL: import.meta.env.VITE_API_URL + '/chathub',
   WAIT_TIME: import.meta.env.VITE_WAIT_TIME ?? 80,
   POST_SORT_OPTIONS: POST_SORT_OPTIONS,
   SOCIAL_POST_SORT_OPTIONS: SOCIAL_POST_SORT_OPTIONS,

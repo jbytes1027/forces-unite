@@ -54,7 +54,7 @@ internal class Program
         app.MapControllers();
 
         // Add SignalR hub endpoint
-        app.MapHub<ChatHub>("/chathub");
+        app.MapHub<ChatHub>("/api/chathub");
     }
 
     private static void ApplyDbMigrations(IConfiguration config)
