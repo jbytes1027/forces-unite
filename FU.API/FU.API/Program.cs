@@ -57,11 +57,26 @@ internal class Program
         app.MapHub<ChatHub>("/api/chathub");
     }
 
+    private static DbContextOptionsBuilder<TContext> ConfigureDbOptions<TContext>(DbContextOptionsBuilder<TContext> optionsBuilder, IConfiguration config)
+    where TContext : DbContext
+    {
+        if (config[ConfigKey.ConnectionString] is null)
+        {
+            optionsBuilder.UseSqlite("Data source=database.dat");
+        }
+        else
+        {
+            optionsBuilder.UseNpgsql(config[ConfigKey.ConnectionString]);
+        }
+
+        return optionsBuilder;
+    }
+
     private static void ApplyDbMigrations(IConfiguration config)
     {
         // Create a DbContext
         var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-        optionsBuilder.UseNpgsql(config[ConfigKey.ConnectionString]);
+        ConfigureDbOptions(optionsBuilder, config);
         using AppDbContext dbContext = new(optionsBuilder.Options);
 
         // Dangerous. See https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli#apply-migrations-at-runtime
@@ -79,7 +94,13 @@ internal class Program
         AssertCriticalConfigValuesExist(builder.Configuration);
 
         // Setup the database
-        builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(builder.Configuration[ConfigKey.ConnectionString]));
+        if (builder.Configuration[ConfigKey.ConnectionString] is null)
+        {
+            Console.WriteLine($"Databse connection string is not configured. Missing {ConfigKey.ConnectionString}. See README for adding. Will use local database.");
+        }
+
+        builder.Services.AddDbContext<AppDbContext>(options =>
+                ConfigureDbOptions<AppDbContext>((DbContextOptionsBuilder<AppDbContext>)options, builder.Configuration), ServiceLifetime.Scoped);
 
         // Validates JWT Tokens
         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
@@ -140,11 +161,11 @@ internal class Program
                 Console.WriteLine($"The base SPA Url is not configured. Missing {ConfigKey.BaseSpaUrl}. See README for adding. Will use mock email service.");
             }
 
-            builder.Services.AddSingleton<IEmailService, MockEmailService>();
+            builder.Services.AddScoped<IEmailService, MockEmailService>();
         }
         else
         {
-            builder.Services.AddSingleton<IEmailService, EmailService>();
+            builder.Services.AddScoped<IEmailService, EmailService>();
         }
 
         builder.Services.AddSignalR(options =>
@@ -211,11 +232,6 @@ internal class Program
 
     private static void AssertCriticalConfigValuesExist(in ConfigurationManager config)
     {
-        if (config[ConfigKey.ConnectionString] is null)
-        {
-            throw new Exception($"Database connection string is not configured. Missing {ConfigKey.ConnectionString}. See README for adding.");
-        }
-
         if (config[ConfigKey.JwtSecret] is null)
         {
             throw new Exception($"JWT secret is not configured. Missing {ConfigKey.JwtSecret}. See README for adding.");
