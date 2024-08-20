@@ -51,7 +51,7 @@ public class SearchController : ControllerBase
             postDtos = posts.ToDtos().ToList();
         }
 
-        Response.Headers.Add("X-total-count", totalResults.ToString());
+        Response.Headers.Append("X-total-count", totalResults.ToString());
 
         return Ok(postDtos);
     }
@@ -65,7 +65,7 @@ public class SearchController : ControllerBase
         // Go through each user and check if the user has a relation with them
         var user = await _searchService.GetAuthorizedUser(User);
 
-        Response.Headers.Add("X-total-count", totalResults.ToString());
+        Response.Headers.Append("X-total-count", totalResults.ToString());
 
         if (user is not null)
         {

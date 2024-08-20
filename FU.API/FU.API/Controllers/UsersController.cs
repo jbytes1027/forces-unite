@@ -121,7 +121,7 @@ public class UsersController : ControllerBase
             postDtos.Add(post.ToDto(hasJoined: true));
         }
 
-        Response.Headers.Add("X-total-count", totalResults.ToString());
+        Response.Headers.Append("X-total-count", totalResults.ToString());
 
         return Ok(postDtos);
     }

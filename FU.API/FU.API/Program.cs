@@ -99,7 +99,8 @@ internal class Program
             Console.WriteLine($"Databse connection string is not configured. Missing {ConfigKey.ConnectionString}. See README for adding. Will use local database.");
         }
 
-        builder.Services.AddDbContext<AppDbContext>(options =>
+        builder.Services.AddDbContext<AppDbContext>(
+            options =>
                 ConfigureDbOptions<AppDbContext>((DbContextOptionsBuilder<AppDbContext>)options, builder.Configuration), ServiceLifetime.Scoped);
 
         // Validates JWT Tokens
