@@ -1,6 +1,6 @@
 # Forces Unite
 
-Forces Unite is a matchmaking platform to find players and make friends. It was developed as group project for a capstone class.
+Forces Unite is a matchmaking platform for gamers to find players and make friends. It was developed as group project for a capstone class.
 
 ## Demo
 
