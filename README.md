@@ -2,6 +2,14 @@
 
 Forces Unite is a matchmaking platform for gamers to find players and make friends. It was developed as group project for a capstone class.
 
+## Notable Contributions
+- Developed the [avatar image uploading system](https://github.com/jbytes1027/forces-unite/tree/main/FU.API#avatar-image-system-overview).
+- [Designed](https://github.com/SCCapstone/PalmettoProgrammers/wiki/Design#discovery-page) and [implemented](https://nice-sand-06eb0990f.5.azurestaticapps.net/discover) the core of the search API and UI.
+- Containerized the API, SPA, Blob Storage, and database for testing.
+- Created the [landing page](https://nice-sand-06eb0990f.5.azurestaticapps.net/) and [showcase video](https://www.youtube.com/watch?v=jp-dW9j6vXE).
+- [Researched competitors](https://github.com/SCCapstone/PalmettoProgrammers/wiki/Competitive-Analysis) to clarify the focus and features of the site.
+
+
 ## Demo
 
 The site is live at <https://nice-sand-06eb0990f.5.azurestaticapps.net>. Use `user1` with password `pass_word1` to login, or create a new account.
