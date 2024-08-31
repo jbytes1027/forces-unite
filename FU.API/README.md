@@ -135,7 +135,7 @@ When users navigate to a pages with a chat, they will be connected the chat grou
 
 ## Avatar Image System Overview
 
-First an avatar is uploaded to the server via `AvatarController.UploadAvatar`. Then it is validated to be an image, cropped to be square, resized, and converted to a JPEG using the `SkiaSharp` library. Then the image is uploaded to a public azure storage blob and its a url is returned to the user for previewing. If the user wants to use the image, they call `UsersController.UpdateProfile` to set it as their new avatar. After awhile, unused profile pictures are deleted by `PeriodicRemoteStorageCleanerHostedService`.
+First, an avatar is uploaded to the server via `AvatarController.UploadAvatar`. Then it's validated to ensure it's a supported image type, cropped to be square, resized, and converted to a JPEG using the `SkiaSharp` library. The image is then uploaded to a public Azure Storage blob and its URL is returned to the user for previewing. If the user wants to use the image, they call `UsersController.UpdateProfile` to set it as their new avatar. After some time, unused profile pictures are deleted by `PeriodicRemoteStorageCleanerHostedService`.
 
 ## Understanding DTOs
 
